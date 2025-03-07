@@ -1,0 +1,82 @@
+[gd_scene load_steps=5 format=3 uid="uid://ci56mujkb447q"]
+
+[ext_resource type="Texture2D" uid="uid://bi0j445fte67a" path="res://assets/sprites/remicat.png" id="1_7agey"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2otcc"]
+atlas = ExtResource("1_7agey")
+region = Rect2(288, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1apr8"]
+atlas = ExtResource("1_7agey")
+region = Rect2(336, 0, 48, 48)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_tegl6"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2otcc")
+}, {
+"duration": 2.0,
+"texture": SubResource("AtlasTexture_1apr8")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 3.0
+}]
+
+[node name="Main" type="Node2D"]
+
+[node name="Background" type="Node2D" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="Background"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 480.0
+offset_bottom = 848.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+color = Color(0.245124, 0.0676741, 0.000735546, 1)
+
+[node name="Pet" type="Node2D" parent="."]
+position = Vector2(240, 426)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Pet"]
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_tegl6")
+animation = &"Idle"
+autoplay = "Idle"
+
+[node name="UI" type="Node" parent="."]
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UI"]
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -126.0
+offset_bottom = -6.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="FoodButton" type="Button" parent="UI/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "FOOD"
+
+[node name="PlayButton" type="Button" parent="UI/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "PLAY"
+
+[node name="Button3" type="Button" parent="UI/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "?"
+
+[node name="Button4" type="Button" parent="UI/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "?"
