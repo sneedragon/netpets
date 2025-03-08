@@ -1,2 +1,6 @@
 res://scenes/main.tscn
+res://scripts/gameplay/pet_manager.gd
 res://scripts/gameplay/main.gd
+res://scenes/offline_handler.gd
+res://scenes/ui_manager.gd
+res://scripts/utils/global.gd

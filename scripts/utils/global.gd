@@ -6,7 +6,7 @@ var data : Dictionary = {
 	"last_time" : 0,
 	"light" : true,
 	"coins" : 0,
-		"pet_stats" : {
+	"pet_stats" : {
 		"birth_time" : 0.0,
 		"age" : 0.0,
 		"hunger" : 100.0,
@@ -27,6 +27,7 @@ func save_data() -> void:
 	file.store_var(game_data)
 	file.close()
 	print("Saved to ", ProjectSettings.globalize_path(path))
+	print(data)
 
 func load_data() -> void:
 	print("loading data")

@@ -1,9 +1,9 @@
+Node
+Button
 Label
 VBoxContainer
 HBoxContainer
 ColorRect
 Node2D
 TextureRect
-Button
 AnimatedSprite2D
-Node
