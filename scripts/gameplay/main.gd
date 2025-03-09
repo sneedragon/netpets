@@ -29,4 +29,3 @@ func _process(delta: float) -> void:
 
 func update_time(delta : float):
 	save_timer += delta
-	global.data["last_time"] = Time.get_unix_time_from_system()

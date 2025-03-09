@@ -7,9 +7,9 @@ extends Node2D
 
 func _process(delta: float) -> void:
 	if !global.data["light"]:
-		sprite.animation = "Sleep"
+		sprite.animation = "Sleep" + str(global.data["pet_attributes"]["pet_type"])
 	else:
-		sprite.animation = "Idle"
+		sprite.animation = "Idle" + str(global.data["pet_attributes"]["pet_type"])
 		
 func generate_pet():
 	global.data["pet_exists"] = true

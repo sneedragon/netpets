@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://ci56mujkb447q"]
+[gd_scene load_steps=17 format=3 uid="uid://ci56mujkb447q"]
 
 [ext_resource type="Texture2D" uid="uid://bi0j445fte67a" path="res://assets/sprites/remicat.png" id="1_7agey"]
 [ext_resource type="Script" path="res://scripts/gameplay/main.gd" id="1_tiv6p"]
@@ -8,6 +8,18 @@
 [ext_resource type="Script" path="res://scripts/gameplay/pet_manager.gd" id="3_ssks3"]
 [ext_resource type="Script" path="res://scenes/pet_states.gd" id="4_n8fpk"]
 [ext_resource type="Script" path="res://scenes/ui_manager.gd" id="6_v5lcp"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qw5oy"]
+atlas = ExtResource("1_7agey")
+region = Rect2(48, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7itmu"]
+atlas = ExtResource("1_7agey")
+region = Rect2(0, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4tiaf"]
+atlas = ExtResource("1_7agey")
+region = Rect2(96, 0, 48, 48)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_2otcc"]
 atlas = ExtResource("1_7agey")
@@ -28,6 +40,23 @@ region = Rect2(384, 144, 48, 48)
 [sub_resource type="SpriteFrames" id="SpriteFrames_tegl6"]
 animations = [{
 "frames": [{
+"duration": 3.0,
+"texture": SubResource("AtlasTexture_qw5oy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7itmu")
+}, {
+"duration": 3.0,
+"texture": SubResource("AtlasTexture_qw5oy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4tiaf")
+}],
+"loop": true,
+"name": &"IdleMilady",
+"speed": 3.0
+}, {
+"frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_2otcc")
 }, {
@@ -35,7 +64,7 @@ animations = [{
 "texture": SubResource("AtlasTexture_1apr8")
 }],
 "loop": true,
-"name": &"Idle",
+"name": &"IdleRemicat",
 "speed": 3.0
 }, {
 "frames": [{
@@ -46,7 +75,7 @@ animations = [{
 "texture": SubResource("AtlasTexture_ml4eg")
 }],
 "loop": true,
-"name": &"Sleep",
+"name": &"SleepRemicat",
 "speed": 0.1
 }]
 
@@ -81,6 +110,7 @@ color = Color(0, 0, 0, 0.788235)
 stream = ExtResource("3_2ja20")
 volume_db = -20.0
 autoplay = true
+parameters/looping = true
 
 [node name="Pet" type="Node2D" parent="."]
 position = Vector2(240, 426)
@@ -95,8 +125,9 @@ script = ExtResource("4_n8fpk")
 [node name="PetSprite" type="AnimatedSprite2D" parent="Pet"]
 scale = Vector2(4, 4)
 sprite_frames = SubResource("SpriteFrames_tegl6")
-animation = &"Idle"
-autoplay = "Idle"
+animation = &"IdleMilady"
+autoplay = "IdleMilady"
+frame_progress = 0.124252
 
 [node name="UI" type="Node" parent="."]
 

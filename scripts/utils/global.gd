@@ -17,6 +17,7 @@ var data : Dictionary = {
 		"sleep": 50.0
 	},
 	"pet_attributes" : {
+		"pet_type": "Remicat",
 		"color": 1.0,
 		"width": 1.0,
 		"height": 1.0,
@@ -39,6 +40,7 @@ var default_data: Dictionary = {
 		"sleep": 50.0
 	},
 	"pet_attributes" : {
+		"pet_type": "Remicat",
 		"color": 1.0,
 		"width": 1.0,
 		"height": 1.0,
@@ -48,6 +50,7 @@ var default_data: Dictionary = {
 }
 
 func save_data() -> void:
+	data["last_time"] = Time.get_unix_time_from_system()
 	var file : FileAccess = FileAccess.open(path, FileAccess.WRITE)
 	if file == null:
 		print("couldn't save? ", FileAccess.get_open_error())
