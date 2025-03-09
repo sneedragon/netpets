@@ -29,6 +29,10 @@ window/stretch/mode="viewport"
 window/stretch/aspect="keep_width"
 window/handheld/orientation=1
 
+[gui]
+
+theme/custom_font="res://assets/fonts/public-pixel-font/PublicPixel-rv0pA.ttf"
+
 [rendering]
 
 textures/canvas_textures/default_texture_filter=0

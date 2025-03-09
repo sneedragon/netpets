@@ -3,6 +3,21 @@
 [ext_resource type="Texture2D" uid="uid://bjieb3mlrc48k" path="res://icon.png" id="1_2ut4i"]
 [ext_resource type="Script" path="res://scenes/title.gd" id="1_ucl08"]
 
+[sub_resource type="Animation" id="Animation_w1hg8"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
 [sub_resource type="Animation" id="Animation_2lbul"]
 resource_name = "new_animation"
 length = 2.0
@@ -18,21 +33,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 0,
 "values": [0.0, 1.5708, 3.14159, 4.71239, 6.28319]
-}
-
-[sub_resource type="Animation" id="Animation_w1hg8"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:rotation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [0.0]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_wgd4f"]
@@ -57,6 +57,7 @@ offset_bottom = 79.0
 text = "LOADING..."
 
 [node name="CatHead" type="TextureRect" parent="LoadingLabel"]
+layout_mode = 0
 offset_left = 90.0
 offset_top = -17.0
 offset_right = 138.0

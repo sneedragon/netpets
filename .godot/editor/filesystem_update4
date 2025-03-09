@@ -1,12 +1,1 @@
 res://scenes/main.tscn
-res://scenes/eggscene.tscn
-res://scenes/egg_scene.tscn
-res://scripts/gameplay/egg_scene.gd
-res://scripts/utils/global.gd
-res://scenes/title.tscn
-res://scenes/title.gd
-res://scripts/gameplay/main.gd
-res://scripts/gameplay/pet.gd
-res://scenes/ui_manager.gd
-res://scenes/offline_handler.gd
-res://scripts/gameplay/pet_manager.gd
