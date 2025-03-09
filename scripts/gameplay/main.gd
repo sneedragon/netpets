@@ -7,10 +7,17 @@ const QUARTER_DAY = 0.00347222
 @onready var ui_manager = $UI/UIManager
 @onready var pet_manager = $Pet/PetManager
 @onready var offline_handler = $OfflineHandler
+@onready var pet: Node2D = $Pet
 
 func _ready() -> void:
+	global.data["pet_exists"] = false
+	global.save_data()
 	global.load_data()
-	offline_handler.update_offline_stats()
+	if global.data["pet_exists"]:
+		offline_handler.update_offline_stats()
+	else:
+		pet.generate_pet()
+	pet.display_pet()
 	global.save_data()
 
 func _process(delta: float) -> void:

@@ -1,9 +1,10 @@
-[gd_scene load_steps=13 format=3 uid="uid://ci56mujkb447q"]
+[gd_scene load_steps=14 format=3 uid="uid://ci56mujkb447q"]
 
 [ext_resource type="Texture2D" uid="uid://bi0j445fte67a" path="res://assets/sprites/remicat.png" id="1_7agey"]
 [ext_resource type="Script" path="res://scripts/gameplay/main.gd" id="1_tiv6p"]
 [ext_resource type="Script" path="res://scripts/gameplay/pet.gd" id="2_372i7"]
 [ext_resource type="Script" path="res://scenes/offline_handler.gd" id="2_tyf2r"]
+[ext_resource type="AudioStream" uid="uid://cfersm2tr8ydb" path="res://assets/audio/default_bgm.mp3" id="3_2ja20"]
 [ext_resource type="Script" path="res://scripts/gameplay/pet_manager.gd" id="3_ssks3"]
 [ext_resource type="Script" path="res://scenes/pet_states.gd" id="4_n8fpk"]
 [ext_resource type="Script" path="res://scenes/ui_manager.gd" id="6_v5lcp"]
@@ -76,6 +77,11 @@ offset_right = 480.0
 offset_bottom = 856.0
 color = Color(0, 0, 0, 0.788235)
 
+[node name="BGM" type="AudioStreamPlayer2D" parent="Room"]
+stream = ExtResource("3_2ja20")
+volume_db = -20.0
+autoplay = true
+
 [node name="Pet" type="Node2D" parent="."]
 position = Vector2(240, 426)
 script = ExtResource("2_372i7")
@@ -87,12 +93,11 @@ script = ExtResource("3_ssks3")
 script = ExtResource("4_n8fpk")
 
 [node name="PetSprite" type="AnimatedSprite2D" parent="Pet"]
+modulate = Color(0, 1, 0.983333, 1)
 scale = Vector2(4, 4)
 sprite_frames = SubResource("SpriteFrames_tegl6")
 animation = &"Idle"
 autoplay = "Idle"
-frame = 1
-frame_progress = 0.133544
 
 [node name="UI" type="Node" parent="."]
 
@@ -163,6 +168,7 @@ offset_right = -12.0
 offset_bottom = -14.0
 grow_horizontal = 2
 grow_vertical = 0
+alignment = 1
 
 [node name="FoodButton" type="Button" parent="UI/ButtonContainer"]
 layout_mode = 2

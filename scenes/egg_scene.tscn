@@ -1,0 +1,133 @@
+[gd_scene load_steps=10 format=3 uid="uid://chnuhd4hc0wav"]
+
+[ext_resource type="Script" path="res://scripts/gameplay/egg_scene.gd" id="1_21crm"]
+[ext_resource type="Texture2D" uid="uid://qx8dy7tv0yem" path="res://assets/sprites/remiegg.png" id="1_r4d1r"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l0p76"]
+atlas = ExtResource("1_r4d1r")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ts7md"]
+atlas = ExtResource("1_r4d1r")
+region = Rect2(64, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eprqj"]
+atlas = ExtResource("1_r4d1r")
+region = Rect2(96, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pld28"]
+atlas = ExtResource("1_r4d1r")
+region = Rect2(32, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v1oiy"]
+atlas = ExtResource("1_r4d1r")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3bavv"]
+atlas = ExtResource("1_r4d1r")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_aah6s"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l0p76")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ts7md")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_eprqj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pld28")
+}],
+"loop": false,
+"name": &"Cracking",
+"speed": 0.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v1oiy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3bavv")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 0.25
+}]
+
+[node name="Main" type="Node2D"]
+script = ExtResource("1_21crm")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_right = 486.0
+offset_bottom = 856.0
+color = Color(0, 0, 0, 1)
+
+[node name="Egg" type="Node2D" parent="."]
+
+[node name="EggSprite" type="AnimatedSprite2D" parent="Egg"]
+position = Vector2(240, 432)
+scale = Vector2(4, 4)
+sprite_frames = SubResource("SpriteFrames_aah6s")
+animation = &"Idle"
+autoplay = "Idle"
+
+[node name="UI" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 480.0
+offset_bottom = 856.0
+
+[node name="HatchLabel" type="Label" parent="UI"]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -57.0
+offset_top = -155.245
+offset_right = 57.0
+offset_bottom = -132.245
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 40
+text = "TAP TO HATCH"
+
+[node name="ButtonContainer" type="HBoxContainer" parent="UI"]
+z_index = 10
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 12.0
+offset_top = -136.0
+offset_right = -12.0
+offset_bottom = -16.0
+grow_horizontal = 2
+grow_vertical = 0
+alignment = 1
+
+[node name="EggButton" type="Button" parent="UI/ButtonContainer"]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 3
+text = "GET EGG"
+
+[node name="HatchButton" type="Button" parent="UI"]
+visible = false
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 0
+offset_left = 186.0
+offset_top = 368.0
+offset_right = 294.0
+offset_bottom = 496.0
+text = "X"
+
+[connection signal="pressed" from="UI/ButtonContainer/EggButton" to="." method="_on_egg_button_pressed"]
+[connection signal="pressed" from="UI/HatchButton" to="." method="_on_hatch_button_pressed"]

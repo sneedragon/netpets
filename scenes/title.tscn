@@ -1,0 +1,122 @@
+[gd_scene load_steps=6 format=3 uid="uid://kpfc01ofgift"]
+
+[ext_resource type="Texture2D" uid="uid://bjieb3mlrc48k" path="res://icon.png" id="1_2ut4i"]
+[ext_resource type="Script" path="res://scenes/title.gd" id="1_ucl08"]
+
+[sub_resource type="Animation" id="Animation_2lbul"]
+resource_name = "new_animation"
+length = 2.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1, 1.5, 2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 1.5708, 3.14159, 4.71239, 6.28319]
+}
+
+[sub_resource type="Animation" id="Animation_w1hg8"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_wgd4f"]
+_data = {
+"RESET": SubResource("Animation_w1hg8"),
+"new_animation": SubResource("Animation_2lbul")
+}
+
+[node name="Main" type="Node2D"]
+script = ExtResource("1_ucl08")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_right = 486.0
+offset_bottom = 856.0
+color = Color(0, 0, 0, 1)
+
+[node name="LoadingLabel" type="Label" parent="."]
+offset_left = 300.0
+offset_top = 56.0
+offset_right = 386.0
+offset_bottom = 79.0
+text = "LOADING..."
+
+[node name="CatHead" type="TextureRect" parent="LoadingLabel"]
+offset_left = 90.0
+offset_top = -17.0
+offset_right = 138.0
+offset_bottom = 31.0
+pivot_offset = Vector2(24, 24)
+texture = ExtResource("1_2ut4i")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="LoadingLabel/CatHead"]
+libraries = {
+"": SubResource("AnimationLibrary_wgd4f")
+}
+autoplay = "new_animation"
+
+[node name="Intro" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 480.0
+offset_bottom = 856.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Intro"]
+layout_direction = 1
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.537
+anchor_top = 0.523
+anchor_right = 0.537
+anchor_bottom = 0.523
+offset_left = -137.76
+offset_top = -71.688
+offset_right = -14.76
+offset_bottom = 10.312
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(2, 2)
+alignment = 1
+
+[node name="FirstButton" type="Button" parent="Intro/VBoxContainer"]
+visible = false
+layout_mode = 2
+size_flags_vertical = 3
+text = "!"
+
+[node name="IntroLabel" type="Label" parent="Intro/VBoxContainer"]
+visible = false
+layout_mode = 2
+theme_override_font_sizes/font_size = 16
+text = "UNKNOWN FILE
+ RECEIVED"
+horizontal_alignment = 1
+
+[node name="OKButton1" type="Button" parent="Intro/VBoxContainer"]
+visible = false
+layout_mode = 2
+text = "OK"
+
+[node name="OKButton2" type="Button" parent="Intro/VBoxContainer"]
+visible = false
+layout_mode = 2
+text = "OK"
+
+[connection signal="pressed" from="Intro/VBoxContainer/FirstButton" to="." method="_on_first_button_pressed"]
+[connection signal="pressed" from="Intro/VBoxContainer/OKButton1" to="." method="_on_ok_button_1_pressed"]
+[connection signal="pressed" from="Intro/VBoxContainer/OKButton2" to="." method="_on_ok_button_2_pressed"]
