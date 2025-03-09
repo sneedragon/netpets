@@ -11,13 +11,7 @@ var current_time
 
 func update_offline_stats():
 	ui_manager.light_check()
-	"""
-
-	time_progressed = ((Time.get_unix_time_from_system() - global.data["last_time"]) * QUARTER_DAY)
-	global.data["pet_stats"]["hunger"] -= time_progressedf
-	global.data["pet_stats"]["happiness"] -= time_progressed
-	sleep_progress()
-	"""
+	
 	if not global.data.has("last_time") or global.data["last_time"] <= 0: #prevent errors
 		return
 		

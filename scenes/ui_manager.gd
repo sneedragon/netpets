@@ -19,12 +19,12 @@ extends Node
 @onready var debugbutton: Button = $"../ButtonContainer/DEBUGBUTTON"
 
 
-func update_meters():
+func update_meters() -> void:
 	hunger_meter_label.text = pet_states.get_hunger_text()
 	happy_meter_label.text = pet_states.get_happiness_text()
 	sleep_meter_label.text = pet_states.get_sleep_text()
 	health_meter_label.text = pet_states.get_health_text()
-	level_label.text = "LVL " + str(pet_manager.get_pet_level())
+	level_label.text = "LVL " + str(pet_manager.get_pet_level() + 1)
 
 func light_check():
 	if !global.data["light"]:

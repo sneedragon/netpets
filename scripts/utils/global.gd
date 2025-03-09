@@ -25,6 +25,7 @@ var data : Dictionary = {
 	"data_version": 1
 }
 var default_data: Dictionary = {
+	"pet_exists": false,
 	"pet_alive": false,
 	"last_time" : 0,
 	"light" : true,
@@ -76,3 +77,6 @@ func load_data() -> void:
 		print("Failed to read data")
 	file.close()
 	
+func reset_data() -> void:
+	data = default_data
+	save_data()

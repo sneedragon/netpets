@@ -40,7 +40,7 @@ func update_health(delta):
 	global.data["pet_stats"]["health"] -= (health_calculation() * delta) + (FULL_DAY / 14)
 	global.data["pet_stats"]["health"] = clamp(global.data["pet_stats"]["health"], 0, 100)
 
-func health_calculation():
+func health_calculation() -> float:
 	var health_factor = 1.0
 	var health = global.data["pet_stats"]["health"]
 	var hunger = global.data["pet_stats"]["hunger"]
@@ -55,5 +55,7 @@ func health_calculation():
 	health_factor -= 1
 	return health_factor
 	
-func get_pet_level():
+func get_pet_level() -> int:
 	return floor((Time.get_unix_time_from_system() - global.data["pet_stats"]["birth_time"]) / 86400)
+	
+	

@@ -93,7 +93,6 @@ script = ExtResource("3_ssks3")
 script = ExtResource("4_n8fpk")
 
 [node name="PetSprite" type="AnimatedSprite2D" parent="Pet"]
-modulate = Color(0, 1, 0.983333, 1)
 scale = Vector2(4, 4)
 sprite_frames = SubResource("SpriteFrames_tegl6")
 animation = &"Idle"

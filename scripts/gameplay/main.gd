@@ -10,8 +10,6 @@ const QUARTER_DAY = 0.00347222
 @onready var pet: Node2D = $Pet
 
 func _ready() -> void:
-	global.data["pet_exists"] = false
-	global.save_data()
 	global.load_data()
 	if global.data["pet_exists"]:
 		offline_handler.update_offline_stats()

@@ -1,15 +1,19 @@
 extends Node2D
 
 func _ready() -> void:
-	if !FileAccess.file_exists(global.path):  ## DONT FORGET TO ADD !
+	if !FileAccess.file_exists(global.path): 
 		print("No data")
 		on_first_launch()
 	elif !global.data["pet_exists"]:
 		print("Found Pet, loading")
 		get_tree().change_scene_to_file("res://scenes/main.tscn")
 	else:
-		print("No pet, preparing eggs")
-		get_tree().change_scene_to_file("res://scenes/egg_scene.tscn")
+		global.load_data()
+		if global.data == global.default_data:
+			on_first_launch()
+		else:
+			print("No pet, preparing eggs")
+			get_tree().change_scene_to_file("res://scenes/egg_scene.tscn")
 
 func on_first_launch():
 	await get_tree().create_timer(5.0).timeout
