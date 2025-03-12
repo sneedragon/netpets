@@ -4,13 +4,16 @@ func _ready() -> void:
 	if !FileAccess.file_exists(global.path): 
 		print("No data")
 		on_first_launch()
-	elif !global.data["pet_exists"]:
-		print("Found Pet, loading")
-		get_tree().change_scene_to_file("res://scenes/main.tscn")
+#	elif !global.data["pet_exists"]:
+		#print("Found Pet, loading")
+	#	get_tree().change_scene_to_file("res://scenes/main.tscn")
 	else:
 		global.load_data()
 		if global.data == global.default_data:
 			on_first_launch()
+		elif global.data["pet_exists"]:
+			print("Found Pet, loading")
+			get_tree().change_scene_to_file("res://scenes/main.tscn")
 		else:
 			print("No pet, preparing eggs")
 			get_tree().change_scene_to_file("res://scenes/egg_scene.tscn")
@@ -38,5 +41,7 @@ func _on_ok_button_1_pressed() -> void:
 
 
 func _on_ok_button_2_pressed() -> void:
+	$Intro/VBoxContainer/OKButton2.hide()
+	$LoadingLabel.show()
 	await get_tree().create_timer(2.0).timeout
 	get_tree().change_scene_to_file("res://scenes/egg_scene.tscn")

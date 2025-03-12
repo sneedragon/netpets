@@ -1,7 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://kpfc01ofgift"]
+[gd_scene load_steps=11 format=3 uid="uid://kpfc01ofgift"]
 
 [ext_resource type="Texture2D" uid="uid://bjieb3mlrc48k" path="res://icon.png" id="1_2ut4i"]
 [ext_resource type="Script" path="res://scenes/title.gd" id="1_ucl08"]
+[ext_resource type="StyleBox" uid="uid://dp4h61s4tb2y1" path="res://styles/button_default.tres" id="3_vyrwq"]
+[ext_resource type="StyleBox" uid="uid://dis0huquw272w" path="res://styles/button_pressed.tres" id="4_nlocq"]
 
 [sub_resource type="Animation" id="Animation_w1hg8"]
 length = 0.001
@@ -41,6 +43,12 @@ _data = {
 "new_animation": SubResource("Animation_2lbul")
 }
 
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_phpua"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_a5qb2"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_hhs7m"]
+
 [node name="Main" type="Node2D"]
 script = ExtResource("1_ucl08")
 
@@ -50,18 +58,18 @@ offset_bottom = 856.0
 color = Color(0, 0, 0, 1)
 
 [node name="LoadingLabel" type="Label" parent="."]
-offset_left = 300.0
+offset_left = 222.0
 offset_top = 56.0
-offset_right = 386.0
+offset_right = 382.0
 offset_bottom = 79.0
 text = "LOADING..."
 
 [node name="CatHead" type="TextureRect" parent="LoadingLabel"]
 layout_mode = 0
-offset_left = 90.0
-offset_top = -17.0
-offset_right = 138.0
-offset_bottom = 31.0
+offset_left = 180.0
+offset_top = -16.0
+offset_right = 228.0
+offset_bottom = 32.0
 pivot_offset = Vector2(24, 24)
 texture = ExtResource("1_2ut4i")
 
@@ -78,19 +86,11 @@ offset_right = 480.0
 offset_bottom = 856.0
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Intro"]
-layout_direction = 1
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.537
-anchor_top = 0.523
-anchor_right = 0.537
-anchor_bottom = 0.523
-offset_left = -137.76
-offset_top = -71.688
-offset_right = -14.76
-offset_bottom = 10.312
-grow_horizontal = 2
-grow_vertical = 2
+offset_top = 208.0
+offset_right = 240.0
+offset_bottom = 400.0
 scale = Vector2(2, 2)
 alignment = 1
 
@@ -98,24 +98,37 @@ alignment = 1
 visible = false
 layout_mode = 2
 size_flags_vertical = 3
+theme_override_styles/focus = SubResource("StyleBoxEmpty_phpua")
+theme_override_styles/hover = ExtResource("3_vyrwq")
+theme_override_styles/pressed = ExtResource("4_nlocq")
+theme_override_styles/normal = ExtResource("3_vyrwq")
 text = "!"
 
 [node name="IntroLabel" type="Label" parent="Intro/VBoxContainer"]
 visible = false
 layout_mode = 2
-theme_override_font_sizes/font_size = 16
-text = "UNKNOWN FILE
- RECEIVED"
+theme_override_font_sizes/font_size = 10
+text = "UNKNOWN
+FILE
+RECEIVED"
 horizontal_alignment = 1
 
 [node name="OKButton1" type="Button" parent="Intro/VBoxContainer"]
 visible = false
 layout_mode = 2
+theme_override_styles/focus = SubResource("StyleBoxEmpty_a5qb2")
+theme_override_styles/hover = ExtResource("3_vyrwq")
+theme_override_styles/pressed = ExtResource("4_nlocq")
+theme_override_styles/normal = ExtResource("3_vyrwq")
 text = "OK"
 
 [node name="OKButton2" type="Button" parent="Intro/VBoxContainer"]
 visible = false
 layout_mode = 2
+theme_override_styles/focus = SubResource("StyleBoxEmpty_hhs7m")
+theme_override_styles/hover = ExtResource("3_vyrwq")
+theme_override_styles/pressed = ExtResource("4_nlocq")
+theme_override_styles/normal = ExtResource("3_vyrwq")
 text = "OK"
 
 [connection signal="pressed" from="Intro/VBoxContainer/FirstButton" to="." method="_on_first_button_pressed"]

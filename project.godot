@@ -26,7 +26,7 @@ global="*res://scripts/utils/global.gd"
 window/size/viewport_width=480
 window/size/viewport_height=854
 window/stretch/mode="viewport"
-window/stretch/aspect="keep_width"
+window/stretch/aspect="keep_height"
 window/handheld/orientation=1
 
 [gui]
@@ -36,5 +36,7 @@ theme/custom_font="res://assets/fonts/public-pixel-font/PublicPixel-rv0pA.ttf"
 [rendering]
 
 textures/canvas_textures/default_texture_filter=0
+renderer/rendering_method="mobile"
+renderer/rendering_method.mobile="gl_compatibility"
 textures/vram_compression/import_etc2_astc=true
-environment/defaults/default_clear_color=Color(0.413548, 0.0111171, 4.81308e-08, 1)
+environment/defaults/default_clear_color=Color(0.0562916, 0.0562916, 0.0562916, 1)

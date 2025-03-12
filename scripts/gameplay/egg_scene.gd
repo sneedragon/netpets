@@ -10,8 +10,9 @@ func _process(delta: float) -> void:
 		spawn_egg()
 	
 func spawn_egg():
-	$Egg/EggSprite.show()
 	egg_exists = true
+	$Egg/EggSprite.show()
+
 	
 func progress_egg(delta) -> void:
 	if egg_time_passed < 20:

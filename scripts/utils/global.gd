@@ -18,7 +18,7 @@ var data : Dictionary = {
 	},
 	"pet_attributes" : {
 		"pet_type": "Remicat",
-		"color": 1.0,
+		"hue": 1.0,
 		"width": 1.0,
 		"height": 1.0,
 	},
@@ -41,7 +41,7 @@ var default_data: Dictionary = {
 	},
 	"pet_attributes" : {
 		"pet_type": "Remicat",
-		"color": 1.0,
+		"hue": 1.0,
 		"width": 1.0,
 		"height": 1.0,
 	},

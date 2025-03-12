@@ -1,25 +1,18 @@
-[gd_scene load_steps=17 format=3 uid="uid://ci56mujkb447q"]
+[gd_scene load_steps=24 format=3 uid="uid://ci56mujkb447q"]
 
 [ext_resource type="Texture2D" uid="uid://bi0j445fte67a" path="res://assets/sprites/remicat.png" id="1_7agey"]
 [ext_resource type="Script" path="res://scripts/gameplay/main.gd" id="1_tiv6p"]
 [ext_resource type="Script" path="res://scripts/gameplay/pet.gd" id="2_372i7"]
+[ext_resource type="Texture2D" uid="uid://7y3uqxbtvv85" path="res://assets/sprites/border.png" id="2_h0s8l"]
 [ext_resource type="Script" path="res://scenes/offline_handler.gd" id="2_tyf2r"]
 [ext_resource type="AudioStream" uid="uid://cfersm2tr8ydb" path="res://assets/audio/default_bgm.mp3" id="3_2ja20"]
 [ext_resource type="Script" path="res://scripts/gameplay/pet_manager.gd" id="3_ssks3"]
 [ext_resource type="Script" path="res://scenes/pet_states.gd" id="4_n8fpk"]
+[ext_resource type="Script" path="res://scenes/pet_display.gd" id="5_sfvmv"]
 [ext_resource type="Script" path="res://scenes/ui_manager.gd" id="6_v5lcp"]
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_qw5oy"]
-atlas = ExtResource("1_7agey")
-region = Rect2(48, 0, 48, 48)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_7itmu"]
-atlas = ExtResource("1_7agey")
-region = Rect2(0, 0, 48, 48)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_4tiaf"]
-atlas = ExtResource("1_7agey")
-region = Rect2(96, 0, 48, 48)
+[ext_resource type="Texture2D" uid="uid://dv5nfpbmakgag" path="res://assets/sprites/button.png" id="11_f4qe2"]
+[ext_resource type="StyleBox" uid="uid://dp4h61s4tb2y1" path="res://styles/button_default.tres" id="11_imgax"]
+[ext_resource type="StyleBox" uid="uid://dis0huquw272w" path="res://styles/button_pressed.tres" id="12_tw5qw"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_2otcc"]
 atlas = ExtResource("1_7agey")
@@ -39,23 +32,6 @@ region = Rect2(384, 144, 48, 48)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_tegl6"]
 animations = [{
-"frames": [{
-"duration": 3.0,
-"texture": SubResource("AtlasTexture_qw5oy")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_7itmu")
-}, {
-"duration": 3.0,
-"texture": SubResource("AtlasTexture_qw5oy")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_4tiaf")
-}],
-"loop": true,
-"name": &"IdleMilady",
-"speed": 3.0
-}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_2otcc")
@@ -79,8 +55,27 @@ animations = [{
 "speed": 0.1
 }]
 
+[sub_resource type="Gradient" id="Gradient_h6kwl"]
+offsets = PackedFloat32Array(0, 0.408451, 0.725352)
+colors = PackedColorArray(1, 0, 0, 1, 1, 0.883333, 0, 1, 0.0833333, 1, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_r6ojc"]
+gradient = SubResource("Gradient_h6kwl")
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_qun0p"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_rexae"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_qmiip"]
+
 [node name="Main" type="Node2D"]
 script = ExtResource("1_tiv6p")
+
+[node name="Border" type="TextureRect" parent="."]
+offset_right = 480.0
+offset_bottom = 854.0
+texture = ExtResource("2_h0s8l")
+stretch_mode = 6
 
 [node name="OfflineHandler" type="Node" parent="."]
 script = ExtResource("2_tyf2r")
@@ -88,6 +83,7 @@ script = ExtResource("2_tyf2r")
 [node name="Room" type="Node2D" parent="."]
 
 [node name="Background" type="ColorRect" parent="Room"]
+z_index = -2
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -116,6 +112,9 @@ parameters/looping = true
 position = Vector2(240, 426)
 script = ExtResource("2_372i7")
 
+[node name="PetDisplay" type="Node" parent="Pet"]
+script = ExtResource("5_sfvmv")
+
 [node name="PetManager" type="Node" parent="Pet"]
 script = ExtResource("3_ssks3")
 
@@ -125,20 +124,28 @@ script = ExtResource("4_n8fpk")
 [node name="PetSprite" type="AnimatedSprite2D" parent="Pet"]
 scale = Vector2(4, 4)
 sprite_frames = SubResource("SpriteFrames_tegl6")
-animation = &"IdleMilady"
-autoplay = "IdleMilady"
-frame_progress = 0.124252
+animation = &"IdleRemicat"
+autoplay = "IdleRemicat"
 
 [node name="UI" type="Node" parent="."]
 
 [node name="UIManager" type="Node" parent="UI"]
 script = ExtResource("6_v5lcp")
 
+[node name="TopRightBG" type="TextureRect" parent="UI"]
+visible = false
+z_index = -1
+offset_left = 6.0
+offset_top = 8.0
+offset_right = 210.0
+offset_bottom = 128.0
+texture = ExtResource("11_f4qe2")
+
 [node name="TopContainer" type="HBoxContainer" parent="UI"]
 offset_left = 12.0
-offset_top = 16.0
-offset_right = 468.0
-offset_bottom = 97.0
+offset_top = 24.0
+offset_right = 444.0
+offset_bottom = 120.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
@@ -149,20 +156,81 @@ size_flags_horizontal = 0
 size_flags_vertical = 0
 
 [node name="HungerMeterLabel" type="Label" parent="UI/TopContainer/MeterContainer"]
+z_index = 1
+custom_minimum_size = Vector2(0, 20)
 layout_mode = 2
 text = "HUNGER"
 
+[node name="HungerBar" type="TextureProgressBar" parent="UI/TopContainer/MeterContainer/HungerMeterLabel"]
+visible = false
+z_index = -1
+layout_mode = 0
+offset_left = 144.0
+offset_right = 162.0
+offset_bottom = 16.0
+step = 10.0
+value = 100.0
+rounded = true
+nine_patch_stretch = true
+texture_progress = SubResource("GradientTexture1D_r6ojc")
+tint_progress = Color(0.703808, 0.703808, 0.703808, 1)
+
 [node name="HappyMeterLabel" type="Label" parent="UI/TopContainer/MeterContainer"]
+z_index = 1
+custom_minimum_size = Vector2(0, 20)
 layout_mode = 2
 text = "HAPPINESS"
 
+[node name="HappyBar" type="TextureProgressBar" parent="UI/TopContainer/MeterContainer/HappyMeterLabel"]
+visible = false
+z_index = -1
+layout_mode = 0
+offset_left = 144.0
+offset_right = 162.0
+offset_bottom = 16.0
+step = 10.0
+rounded = true
+nine_patch_stretch = true
+texture_progress = SubResource("GradientTexture1D_r6ojc")
+tint_progress = Color(0.7, 0.7, 0.7, 1)
+
 [node name="SleepMeterLabel" type="Label" parent="UI/TopContainer/MeterContainer"]
+z_index = 1
+custom_minimum_size = Vector2(0, 20)
 layout_mode = 2
 text = "SLEEP"
 
+[node name="SleepBar" type="TextureProgressBar" parent="UI/TopContainer/MeterContainer/SleepMeterLabel"]
+visible = false
+z_index = -1
+layout_mode = 0
+offset_left = 144.0
+offset_right = 162.0
+offset_bottom = 16.0
+step = 10.0
+rounded = true
+nine_patch_stretch = true
+texture_progress = SubResource("GradientTexture1D_r6ojc")
+tint_progress = Color(0.7, 0.7, 0.7, 1)
+
 [node name="HealthMeterLabel" type="Label" parent="UI/TopContainer/MeterContainer"]
+z_index = 1
+custom_minimum_size = Vector2(0, 20)
 layout_mode = 2
 text = "HEALTH"
+
+[node name="HealthBar" type="TextureProgressBar" parent="UI/TopContainer/MeterContainer/HealthMeterLabel"]
+visible = false
+z_index = -1
+layout_mode = 0
+offset_left = 144.0
+offset_right = 162.0
+offset_bottom = 16.0
+step = 10.0
+rounded = true
+nine_patch_stretch = true
+texture_progress = SubResource("GradientTexture1D_r6ojc")
+tint_progress = Color(0.7, 0.7, 0.7, 1)
 
 [node name="VBoxContainer" type="VBoxContainer" parent="UI/TopContainer/MeterContainer"]
 layout_mode = 2
@@ -203,11 +271,19 @@ alignment = 1
 [node name="FoodButton" type="Button" parent="UI/ButtonContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
+theme_override_styles/focus = SubResource("StyleBoxEmpty_qun0p")
+theme_override_styles/hover = ExtResource("11_imgax")
+theme_override_styles/pressed = ExtResource("12_tw5qw")
+theme_override_styles/normal = ExtResource("11_imgax")
 text = "FOOD"
 
 [node name="PlayButton" type="Button" parent="UI/ButtonContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
+theme_override_styles/focus = SubResource("StyleBoxEmpty_rexae")
+theme_override_styles/hover = ExtResource("11_imgax")
+theme_override_styles/pressed = ExtResource("12_tw5qw")
+theme_override_styles/normal = ExtResource("11_imgax")
 text = "PLAY"
 
 [node name="MedicineButton" type="Button" parent="UI/ButtonContainer"]
@@ -219,9 +295,14 @@ text = "MEDICINE"
 [node name="SleepButton" type="Button" parent="UI/ButtonContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
+theme_override_styles/focus = SubResource("StyleBoxEmpty_qmiip")
+theme_override_styles/hover = ExtResource("11_imgax")
+theme_override_styles/pressed = ExtResource("12_tw5qw")
+theme_override_styles/normal = ExtResource("11_imgax")
 text = "SLEEP"
 
 [node name="DEBUGBUTTON" type="Button" parent="UI/ButtonContainer"]
+visible = false
 layout_mode = 2
 text = "DEBUG"
 

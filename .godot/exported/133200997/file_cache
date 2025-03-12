@@ -1,2 +1,7 @@
-res://scenes/main.tscn::aa7450b97a5e1ca0c642a7cb9f48dee8::1741371972::res://.godot/exported/133200997/export-3ad5c15c4f3250da0cc7c1af1770d85f-main.scn
-res://styles/basic_button.tres::3391be3c62223f458da3bddc08db945f::1741368218::res://.godot/exported/133200997/export-e7106d87d5e6c1678e9db874f4d7c964-basic_button.res
+res://scenes/main.tscn::715ec046ada7c49676951387487030a1::1741724055::res://.godot/exported/133200997/export-3ad5c15c4f3250da0cc7c1af1770d85f-main.scn
+res://styles/basic_button.tres::cc6871a32348ae40e791e07ab441dbe3::1741719295::res://.godot/exported/133200997/export-e7106d87d5e6c1678e9db874f4d7c964-basic_button.res
+res://scenes/death.tscn::d24f68a16b0948a679b7fd29e1137249::1741724056::res://.godot/exported/133200997/export-dda3bdaa99b2b647d4f1539dffae10d3-death.scn
+res://scenes/egg_scene.tscn::145d870dd75c2902f596f7ab0b43eb5a::1741724055::res://.godot/exported/133200997/export-aa450ef22156458d2fba1358f777b11e-egg_scene.scn
+res://scenes/title.tscn::159f36276b2ef67c392d400cc81bb80f::1741724055::res://.godot/exported/133200997/export-1f317455290310368203a73618de45af-title.scn
+res://styles/button_default.tres::4bdd19d8a703c8b3d77e73c1053d59b6::1741719720::res://.godot/exported/133200997/export-0c714eeb24c68b91b23dcddf2370d1b4-button_default.res
+res://styles/button_pressed.tres::81a78f999540810c12003664acec8164::1741719701::res://.godot/exported/133200997/export-fc53668e50b60b6b073abaff696ba6bd-button_pressed.res

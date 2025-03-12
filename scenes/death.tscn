@@ -1,0 +1,156 @@
+[gd_scene load_steps=14 format=3 uid="uid://byevvtv7om8ru"]
+
+[ext_resource type="Script" path="res://scripts/gameplay/death.gd" id="1_ejsxn"]
+[ext_resource type="Texture2D" uid="uid://bi0j445fte67a" path="res://assets/sprites/remicat.png" id="1_l4kgb"]
+[ext_resource type="StyleBox" uid="uid://dp4h61s4tb2y1" path="res://styles/button_default.tres" id="3_2rcbs"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1y75g"]
+atlas = ExtResource("1_l4kgb")
+region = Rect2(288, 240, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_iqou1"]
+atlas = ExtResource("1_l4kgb")
+region = Rect2(288, 192, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_koq3m"]
+atlas = ExtResource("1_l4kgb")
+region = Rect2(336, 192, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2otcc"]
+atlas = ExtResource("1_l4kgb")
+region = Rect2(288, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1apr8"]
+atlas = ExtResource("1_l4kgb")
+region = Rect2(336, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p0urq"]
+atlas = ExtResource("1_l4kgb")
+region = Rect2(288, 144, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ml4eg"]
+atlas = ExtResource("1_l4kgb")
+region = Rect2(384, 144, 48, 48)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_0fo4m"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1y75g")
+}],
+"loop": true,
+"name": &"DeadRemicat",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_iqou1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_koq3m")
+}],
+"loop": true,
+"name": &"DyingRemicat",
+"speed": 1.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2otcc")
+}, {
+"duration": 2.0,
+"texture": SubResource("AtlasTexture_1apr8")
+}],
+"loop": true,
+"name": &"IdleRemicat",
+"speed": 3.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p0urq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ml4eg")
+}],
+"loop": true,
+"name": &"SleepRemicat",
+"speed": 0.1
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_imhwo"]
+atlas = ExtResource("1_l4kgb")
+region = Rect2(384, 240, 48, 48)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_fq3kk"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_imhwo")
+}],
+"loop": true,
+"name": &"GraveRemicat",
+"speed": 5.0
+}]
+
+[node name="Main" type="Node2D"]
+script = ExtResource("1_ejsxn")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+z_index = -1
+offset_right = 480.0
+offset_bottom = 856.0
+color = Color(0.147672, 0.147672, 0.147672, 1)
+
+[node name="PetSprite" type="AnimatedSprite2D" parent="."]
+position = Vector2(246, 480)
+scale = Vector2(4, 4)
+sprite_frames = SubResource("SpriteFrames_0fo4m")
+animation = &"DyingRemicat"
+autoplay = "DyingRemicat"
+
+[node name="GoodbyeLabel" type="Label" parent="."]
+visible = false
+offset_top = 128.0
+offset_right = 480.0
+offset_bottom = 384.0
+text = "\"I don't feel
+so good...\""
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ButtonContainer" type="HBoxContainer" parent="."]
+z_index = 10
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 12.0
+offset_top = 720.0
+offset_right = 468.0
+offset_bottom = 840.0
+grow_horizontal = 2
+grow_vertical = 0
+alignment = 1
+
+[node name="FormatButton" type="Button" parent="ButtonContainer"]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/normal = ExtResource("3_2rcbs")
+text = "FORMAT"
+
+[node name="ToEggButton" type="Button" parent="ButtonContainer"]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/normal = ExtResource("3_2rcbs")
+text = "RECEIVE NEW DATA"
+
+[node name="GraveSprite" type="AnimatedSprite2D" parent="."]
+visible = false
+position = Vector2(246, 480)
+scale = Vector2(4, 4)
+sprite_frames = SubResource("SpriteFrames_fq3kk")
+animation = &"GraveRemicat"
+
+[connection signal="pressed" from="ButtonContainer/FormatButton" to="." method="_on_format_button_pressed"]
+[connection signal="pressed" from="ButtonContainer/ToEggButton" to="." method="_on_to_egg_button_pressed"]
